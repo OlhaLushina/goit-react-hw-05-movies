@@ -1,16 +1,44 @@
 import axios from 'axios';
-const API_KEY = '34577809-7101597b9962251251dc5571b';
-const PER_PAGE = 12; // скільки виводити на сторінку зображень
+const API_KEY = '34e68a416eb051ec4adf34df5a0038fd';
+const BASE_URL = 'https://api.themoviedb.org/3';
+//const PER_PAGE = 12; // скільки виводити на сторінку зображень
 
-export const getImages = async (searchText, page) => {
+/* Список найпопулярніших фільмів на сьогодні */
+export const getMoviesTrending = async () => {
   const response = await axios.get(
-    `https://pixabay.com/api/?q=${searchText}&page=${page}&key=${API_KEY}&image_type=photo&orientation=horizontal&per_page=${PER_PAGE}`
+    `${BASE_URL}/trending/movie/day?api_key=${API_KEY}`
   );
-  return {
-    fetchImages:
-      response.data
-        .hits /* список зображень 34577809-7101597b9962251251dc5571b*/,
-    total: response.data.totalHits /*скільки всього зображень  */,
-    per_page: PER_PAGE /* скільки виводити на сторінку зображень */,
-  };
+  return response.data;
+};
+
+/* Список фільмів за результатами пошуку */
+export const getMoviesSearch = async page => {
+  const response = await axios.get(
+    `${BASE_URL}/search/movie?api_key=${API_KEY}&page=${page}`
+  );
+  return response.data;
+};
+
+/* Детальна інформація про фільм */
+export const getMovieDetails = async id => {
+  const response = await axios.get(
+    `${BASE_URL}/movie/${id}?api_key=${API_KEY}`
+  );
+  return response.data;
+};
+
+/* Акторський склад фільму */
+export const getMovieActors = async id => {
+  const response = await axios.get(
+    `${BASE_URL}/movie/${id}/credits?api_key=${API_KEY}`
+  );
+  return response.data.cast;
+};
+
+/* Відгуки про фільм */
+export const getMovieReviews = async id => {
+  const response = await axios.get(
+    `${BASE_URL}/movie/${id}/reviews?api_key=${API_KEY}`
+  );
+  return response.data.results;
 };

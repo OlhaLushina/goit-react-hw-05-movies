@@ -1,0 +1,17 @@
+import styled from 'styled-components';
+import { Link as LinkStyled } from 'react-router-dom';
+
+export const Link = styled(LinkStyled)`
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 200px;
+  text-align: center;
+  text-decoration: none;
+`;
+
+export const Title = styled.div`
+  color: #000;
+`;
