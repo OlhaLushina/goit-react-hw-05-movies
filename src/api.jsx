@@ -12,9 +12,9 @@ export const getMoviesTrending = async () => {
 };
 
 /* Список фільмів за результатами пошуку */
-export const getMoviesSearch = async page => {
+export const getMoviesSearch = async (search_text, page) => {
   const response = await axios.get(
-    `${BASE_URL}/search/movie?api_key=${API_KEY}&page=${page}`
+    `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${search_text}&page=${page}`
   );
   return response.data;
 };

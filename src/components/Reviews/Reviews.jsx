@@ -1,12 +1,12 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import * as api from 'api';
 import { Status } from 'global';
 import { ErrorMess } from 'components/ErrorMess/ErrorMess.styled';
 import { Loader } from 'components/Loader/Loader';
 import { Item, List, Name } from './Reviews.styled';
-const { useEffect, useState } = require('react');
-const { useParams } = require('react-router-dom');
 
-export const Reviews = () => {
+const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [status, setStatus] = useState(Status.IDLE);
   const [error, setError] = useState(null);
@@ -59,3 +59,5 @@ export const Reviews = () => {
     </>
   );
 };
+
+export default Reviews;

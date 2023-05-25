@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import * as api from 'api';
 import { Status } from 'global';
@@ -9,6 +10,7 @@ const Home = () => {
   const [movies, setMovies] = useState([]);
   const [status, setStatus] = useState(Status.IDLE);
   const [error, setError] = useState(null);
+  const location = useLocation(); // Об'єкт розташування у стеку історії навігації
 
   useEffect(() => {
     async function getTrending() {
@@ -41,7 +43,7 @@ const Home = () => {
         <ErrorMess>Помилка: {error.message}</ErrorMess>
       )}
       {status === Status.RESOLVED && movies && (
-        <MoviesGallery movies={movies} />
+        <MoviesGallery movies={movies} location={location} />
       )}
     </>
   );

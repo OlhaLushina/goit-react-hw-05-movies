@@ -1,16 +1,18 @@
+import { useEffect, useState, Suspense } from 'react';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
 import * as api from 'api';
 import { Status } from 'global';
 import { ErrorMess } from 'components/ErrorMess/ErrorMess.styled';
 import { Loader } from 'components/Loader/Loader';
 import { MovieCard } from 'components/MovieCard/MovieCard';
 import { MovieCardNav } from 'components/MovieCardNav/MovieCardNav';
-const { useEffect, useState } = require('react');
-const { useParams, Outlet } = require('react-router-dom');
+import { LinkGoBack } from 'components/LinkGoBack/LinkGoBack';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState({});
   const [status, setStatus] = useState(Status.IDLE);
   const [error, setError] = useState(null);
+  const location = useLocation(); // Об'єкт розташування у стеку історії навігації
 
   /* Отримуємо id фільму із рядка запиту */
   const { movieId } = useParams();
@@ -41,13 +43,17 @@ const MovieDetails = () => {
 
   return (
     <>
+      <LinkGoBack to={location.state?.from ?? '/'}>Go back</LinkGoBack>
       {status === Status.PENDING && <Loader />}
       {status === Status.REJECTED && (
         <ErrorMess>Помилка: {error.message}</ErrorMess>
       )}
       {status === Status.RESOLVED && movie && <MovieCard movie={movie} />}
       <MovieCardNav />
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        {' '}
+        <Outlet />
+      </Suspense>
     </>
   );
 };

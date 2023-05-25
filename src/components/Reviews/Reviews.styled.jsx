@@ -10,7 +10,7 @@ export const Item = styled.li`
   padding: 0;
 `;
 
-export const Name = styled.li`
+export const Name = styled.div`
   margin-bottom: 10px;
   font-weight: bold;
 `;

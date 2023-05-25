@@ -2,9 +2,12 @@ import { Link, Title } from './MovieGalleryItem.styled';
 /*import NoMoviePoster from 'assets/no-movie-poster.jpg';*/
 const NoMoviePoster = '';
 
-export const MovieGalleryItem = ({ movie: { id, poster_path, title } }) => {
+export const MovieGalleryItem = ({
+  movie: { id, poster_path, title },
+  location,
+}) => {
   return (
-    <Link to={`movies/${id}`}>
+    <Link to={`/movies/${id}`} state={{ from: location }}>
       <img
         src={
           poster_path

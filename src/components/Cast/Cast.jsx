@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import * as api from 'api';
 import { Status } from 'global';
 import { ErrorMess } from 'components/ErrorMess/ErrorMess.styled';
@@ -5,10 +7,8 @@ import { Loader } from 'components/Loader/Loader';
 import { Item, List } from './Cast.styled';
 /*import NoMoviePoster from '../assets/no-movie-poster.jpg';*/
 const NoMoviePoster = '';
-const { useEffect, useState } = require('react');
-const { useParams } = require('react-router-dom');
 
-export const Cast = () => {
+const Cast = () => {
   const [actors, setActors] = useState([]);
   const [status, setStatus] = useState(Status.IDLE);
   const [error, setError] = useState(null);
@@ -67,3 +67,5 @@ export const Cast = () => {
     </>
   );
 };
+
+export default Cast;
