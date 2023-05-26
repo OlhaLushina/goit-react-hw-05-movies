@@ -4,8 +4,8 @@ import * as api from 'api';
 import { Status } from 'global';
 import { ErrorMess } from 'components/ErrorMess/ErrorMess.styled';
 import { Loader } from 'components/Loader/Loader';
-import { Item, List } from './Cast.styled';
-import NoMoviePoster from 'assets/no-movie-poster.jpg';
+import { Item, List, Thumb } from './Cast.styled';
+import NoMoviePoster from 'assets/no-user-image.jpg';
 
 const Cast = () => {
   const [actors, setActors] = useState([]);
@@ -49,15 +49,17 @@ const Cast = () => {
         <List>
           {actors.map(({ id, profile_path, name }) => (
             <Item key={id}>
-              <img
-                src={
-                  profile_path
-                    ? `https://image.tmdb.org/t/p/original${profile_path}`
-                    : NoMoviePoster
-                }
-                alt={name}
-                width="200"
-              />
+              <Thumb>
+                {' '}
+                <img
+                  src={
+                    profile_path
+                      ? `https://image.tmdb.org/t/p/original${profile_path}`
+                      : NoMoviePoster
+                  }
+                  alt={name}
+                />
+              </Thumb>
               {name}
             </Item>
           ))}

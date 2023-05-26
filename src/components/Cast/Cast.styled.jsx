@@ -19,4 +19,23 @@ export const Item = styled.li`
   text-align: center;
   text-decoration: none;
   list-style: none;
+
+  img {
+    display: block;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+    transform: scale(1);
+    transition: transform 250ms linear 0s;
+  }
+
+  &:hover img {
+    transform: scale(1.1);
+  }
+`;
+
+export const Thumb = styled.div`
+  width: 200px;
+  height: 300px;
 `;
