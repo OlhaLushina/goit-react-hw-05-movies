@@ -5,8 +5,7 @@ import { Status } from 'global';
 import { ErrorMess } from 'components/ErrorMess/ErrorMess.styled';
 import { Loader } from 'components/Loader/Loader';
 import { Item, List } from './Cast.styled';
-/*import NoMoviePoster from '../assets/no-movie-poster.jpg';*/
-const NoMoviePoster = '';
+import NoMoviePoster from 'assets/no-movie-poster.jpg';
 
 const Cast = () => {
   const [actors, setActors] = useState([]);
