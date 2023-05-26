@@ -1,16 +1,40 @@
 import PropTypes from 'prop-types';
-import { Searchbar } from './MovieSearchbar.styled';
+import { useState } from 'react';
+import { Form } from './MovieSearchbar.styled';
+import toast, { Toaster } from 'react-hot-toast';
 
-export const MovieSearchbar = ({ query, onChange }) => {
+export const MovieSearchbar = ({ query, onSubmit }) => {
+  const [searchText, setSearchText] = useState(query);
+
+  const handleSearchText = e => {
+    setSearchText(e.currentTarget.value.toLowerCase());
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (searchText === '') {
+      toast.error('Please enter text for search');
+      return;
+    }
+    onSubmit(searchText);
+    //setSearchText('');
+  };
+
   return (
-    <Searchbar>
-      <input type="text" value={query} onChange={onChange} />
+    <Form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="searchText"
+        value={searchText}
+        onChange={handleSearchText}
+      />
       <button>Search</button>
-    </Searchbar>
+      <Toaster />
+    </Form>
   );
 };
 
 MovieSearchbar.propTypes = {
   query: PropTypes.string,
-  onChange: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
 };

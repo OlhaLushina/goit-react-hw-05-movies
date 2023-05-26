@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Searchbar = styled.div`
+export const Form = styled.form`
   display: flex;
   justify-content: center;
   margin-bottom: 20px;

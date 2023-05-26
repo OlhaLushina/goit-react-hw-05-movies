@@ -40,15 +40,14 @@ const Movies = () => {
   }, [searchText]);
 
   /* Зміна параметра пошуку */
-  const updateSearchText = evt => {
-    const query = evt.target.value;
+  const updateSearchText = query => {
     const nextParams = query !== '' ? { query } : {};
     setSearchParams(nextParams);
   };
 
   return (
     <>
-      <MovieSearchbar query={searchText} onChange={updateSearchText} />
+      <MovieSearchbar query={searchText} onSubmit={updateSearchText} />
       {status === Status.PENDING && <Loader />}
       {status === Status.REJECTED && (
         <ErrorMess>Помилка: {error.message}</ErrorMess>
