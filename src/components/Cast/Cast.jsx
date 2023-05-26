@@ -64,6 +64,10 @@ const Cast = () => {
           ))}
         </List>
       )}
+
+      {status === Status.RESOLVED && actors.length === 0 && (
+        <div>We don't have any cast for this movie.</div>
+      )}
     </>
   );
 };

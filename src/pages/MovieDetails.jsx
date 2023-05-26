@@ -51,7 +51,6 @@ const MovieDetails = () => {
       {status === Status.RESOLVED && movie && <MovieCard movie={movie} />}
       <MovieCardNav />
       <Suspense fallback={<div>Loading...</div>}>
-        {' '}
         <Outlet />
       </Suspense>
     </>

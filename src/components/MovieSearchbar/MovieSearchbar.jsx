@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Searchbar } from './MovieSearchbar.styled';
 
 export const MovieSearchbar = ({ query, onChange }) => {
@@ -7,4 +8,9 @@ export const MovieSearchbar = ({ query, onChange }) => {
       <button>Search</button>
     </Searchbar>
   );
+};
+
+MovieSearchbar.propTypes = {
+  query: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
 };

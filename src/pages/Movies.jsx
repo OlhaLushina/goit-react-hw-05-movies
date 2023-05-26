@@ -56,6 +56,9 @@ const Movies = () => {
       {status === Status.RESOLVED && movies && (
         <MoviesGallery movies={movies} location={location} />
       )}
+      {status === Status.RESOLVED && movies.length === 0 && searchText && (
+        <ErrorMess>Sorry. There are no images.</ErrorMess>
+      )}
     </>
   );
 };

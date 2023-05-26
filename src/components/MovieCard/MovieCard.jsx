@@ -1,7 +1,6 @@
+import PropTypes from 'prop-types';
 import { Overview, Title } from './MovieCard.styled';
-
-/*import NoMoviePoster from '../assets/no-movie-poster.jpg';*/
-const NoMoviePoster = '';
+import NoMoviePoster from 'assets/no-movie-poster.jpg';
 
 export const MovieCard = ({ movie: { poster_path, title, overview } }) => {
   return (
@@ -11,7 +10,7 @@ export const MovieCard = ({ movie: { poster_path, title, overview } }) => {
           src={
             poster_path
               ? `https://image.tmdb.org/t/p/original${poster_path}`
-              : NoMoviePoster
+              : `${NoMoviePoster}`
           }
           alt={title}
           width="400"
@@ -21,4 +20,12 @@ export const MovieCard = ({ movie: { poster_path, title, overview } }) => {
       <Overview>{overview}</Overview>
     </>
   );
+};
+
+MovieCard.propTypes = {
+  movie: PropTypes.shape({
+    poster_path: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    overview: PropTypes.string.isRequired,
+  }).isRequired,
 };

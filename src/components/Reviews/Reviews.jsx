@@ -44,7 +44,7 @@ const Reviews = () => {
       {status === Status.REJECTED && (
         <ErrorMess>Помилка: {error.message}</ErrorMess>
       )}
-      {status === Status.RESOLVED && reviews ? (
+      {status === Status.RESOLVED && reviews && (
         <List>
           {reviews.map(({ id, author, content }) => (
             <Item key={id}>
@@ -53,7 +53,8 @@ const Reviews = () => {
             </Item>
           ))}
         </List>
-      ) : (
+      )}
+      {status === Status.RESOLVED && reviews.length === 0 && (
         <div>We don't have any reviews for this movie.</div>
       )}
     </>
